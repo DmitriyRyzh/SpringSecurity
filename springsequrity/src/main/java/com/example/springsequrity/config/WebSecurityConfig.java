@@ -17,7 +17,7 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests((AutorizeRequests) -> AutorizeRequests
+                /*.authorizeRequests((AutorizeRequests) -> AutorizeRequests
                         .anyRequest().fullyAuthenticated())
                 .formLogin(formLogin -> formLogin.loginPage("/login").failureUrl("/login?error")
                                 .permitAll())
@@ -25,10 +25,10 @@ public class WebSecurityConfig {
                         .logoutSuccessUrl("/")
                         .permitAll())
                 .rememberMe(rememberMe -> rememberMe.key("remember-me")
-                        .tokenValiditySeconds(86400));
+                        .tokenValiditySeconds(86400));*/
 
-                /*.authorizeHttpRequests((requests) -> requests
-                       .requestMatchers("/", "/home")
+                .authorizeHttpRequests((requests) -> requests
+                       .requestMatchers()
                         .permitAll()
                         .anyRequest().authenticated()
                 )
@@ -36,12 +36,12 @@ public class WebSecurityConfig {
                         .loginPage("/login")
                         .permitAll()
                 )
-                .logout((logout) -> logout.permitAll());*/
+                .logout((logout) -> logout.permitAll());
 
         return http.build();
     }
 
-    /*@Bean
+    @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user =
                 User.withDefaultPasswordEncoder()
@@ -51,5 +51,5 @@ public class WebSecurityConfig {
                         .build();
 
         return new InMemoryUserDetailsManager(user);
-    }*/
+    }
 }
